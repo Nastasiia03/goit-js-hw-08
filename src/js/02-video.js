@@ -17,6 +17,14 @@ player.on('timeupdate', throttle(function(currentTime) {
     localStorage.setItem("videoplayer-current-time", JSON.stringify(seconds));
 }, 1000));
 
-const time = localStorage.getItem("videoplayer-current-time");
-const time1 = JSON.parse(time);
-player.setCurrentTime(time1);
+try {
+    const time = localStorage.getItem("videoplayer-current-time");
+    if (time === null) {
+        return undefined;
+    } else {
+        const time1 = JSON.parse(time);
+        player.setCurrentTime(time1);
+    };
+} catch (error) {
+console.error("Get state error", error.message);
+    };

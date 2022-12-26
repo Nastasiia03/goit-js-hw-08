@@ -37,6 +37,9 @@ form.addEventListener("submit", filledFields);
 
 function filledFields(evt) {
     evt.preventDefault();
+    if (email.value === "" || message.value === "") {
+        return alert("Усі поля повинні бути заповнені!");
+    };
     console.dir({ email: email.value, message: message.value });
     localStorage.removeItem(LOCALSTORAGE_KEY);
     form.reset();   
